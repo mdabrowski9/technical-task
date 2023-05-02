@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Entity;
+declare(strict_types=1);
 
-use App\Repository\ResolvedAddressRepository;
+namespace App\GeoCode\Domain\Entity;
+
+use App\GeoCode\Infrastructure\Repository\ResolvedAddressRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

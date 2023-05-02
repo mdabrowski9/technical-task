@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ValueObject;
+namespace App\GeoCode\Domain\ValueObject;
 
 class Coordinates
 {
