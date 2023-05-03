@@ -24,7 +24,12 @@
         "symfony/yaml": "5.2.*"
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.33"
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "*",
+        "symfony/browser-kit": "5.2.*",
+        "symfony/css-selector": "5.2.*",
+        "symfony/maker-bundle": "^1.33",
+        "symfony/phpunit-bridge": "^6.2"
     },
     "config": {
         "optimize-autoloader": true,
@@ -61,7 +66,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "csfix": "XDEBUG_MODE=off phpcbf -v",
+        "cscheck": "XDEBUG_MODE=off phpcs -v"
     },
     "conflict": {
         "symfony/symfony": "*"

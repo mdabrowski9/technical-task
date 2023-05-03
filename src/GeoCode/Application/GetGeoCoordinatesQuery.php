@@ -11,8 +11,7 @@ class GetGeoCoordinatesQuery implements QueryInterface
 {
     public function __construct(
         private readonly Address $address,
-    )
-    {
+    ) {
     }
 
     /** @return Address */

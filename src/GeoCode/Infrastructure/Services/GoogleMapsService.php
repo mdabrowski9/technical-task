@@ -1,14 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\GeoCode\Infrastructure\Services;
 
 use App\GeoCode\Domain\ValueObject\Address;
 use App\GeoCode\Domain\ValueObject\Coordinates;
 use GuzzleHttp\Client;
 
-class GoogleMapsService implements GeoCodersInterface
+class GoogleMapsService implements GeoCodersServiceInterface
 {
+    public function __construct(
+        private readonly GeoCodersServiceInterface $decoratedGeoCodersService,
+    ) {
+    }
+
     public function getGeoCoordinatesForAddress(Address $address): Coordinates|null
+    {
+        return $this->getGeoCoordinatesForAddressByGoogleMaps($address) ?? $this->decoratedGeoCodersService->getGeoCoordinatesForAddress($address);
+    }
+
+    private function getGeoCoordinatesForAddressByGoogleMaps(Address $address): Coordinates|null
     {
         $apiKey = $_ENV["GOOGLE_GEOCODING_API_KEY"];
 

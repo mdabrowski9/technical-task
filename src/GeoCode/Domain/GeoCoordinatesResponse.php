@@ -8,5 +8,4 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GeoCoordinatesResponse extends JsonResponse
 {
-
 }

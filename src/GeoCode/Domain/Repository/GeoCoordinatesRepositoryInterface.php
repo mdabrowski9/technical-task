@@ -9,5 +9,5 @@ use App\GeoCode\Domain\ValueObject\Coordinates;
 
 interface GeoCoordinatesRepositoryInterface
 {
-    public function getGeoCoordinates(Address $address): Coordinates;
+    public function getGeoCoordinates(Address $address): Coordinates|null;
 }

@@ -13,13 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class GetGeoCoordinates
 {
-    private const HTTP_OK = 200;
-
     public function __construct(
         private readonly AddressFactory $addressFactory,
         private readonly QueryBusInterface $queryBus,
-    )
-    {
+    ) {
     }
 
     /**
@@ -30,13 +27,7 @@ class GetGeoCoordinates
     public function getGeoCoordinatesAction(Request $request): GeoCoordinatesResponse
     {
         $address = $this->addressFactory->prepareAddressFromRequest($request);
-        $responseData = $this->queryBus->handle(new GetGeoCoordinatesQuery($address));
 
-        return new GeoCoordinatesResponse(
-            data: $responseData,
-            status: self::HTTP_OK,
-            headers: [],
-            json: false
-        );
+        return $this->queryBus->handle(new GetGeoCoordinatesQuery($address));
     }
 }

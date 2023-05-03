@@ -33,5 +33,14 @@ services:
     App\Shared\MessageQueryBus:
         arguments:
             - '@messenger.bus.query'
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+
+    App\GeoCode\Infrastructure\Services\GeoCodersServiceInterface:
+        class: App\GeoCode\Infrastructure\Services\HereMapsService
+
+    App\GeoCode\Infrastructure\Services\GoogleMapsService:
+        decorates: App\GeoCode\Infrastructure\Services\GeoCodersServiceInterface
+        decoration_priority: 2
+
+    App\GeoCode\Infrastructure\Services\GeoCoordinatesCacheService:
+        decorates: App\GeoCode\Infrastructure\Services\GeoCodersServiceInterface
+        decoration_priority: 1
